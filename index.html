@@ -40,7 +40,7 @@ body {
     border-radius: 18px;
     padding: 26px;
     width: 100%;
-    max-width: 360px;
+    max-width: 380px;
     text-align: center;
     box-shadow: 0 12px 40px rgba(0,0,0,0.2);
     animation: popIn 0.7s ease;
@@ -93,7 +93,7 @@ button:active {
     display: none;
     color: white;
     text-align: center;
-    max-width: 380px;
+    max-width: 420px;
     animation: fadeIn 0.6s ease;
     z-index: 10;
 }
@@ -103,10 +103,15 @@ button:active {
     to { opacity: 1; transform: translateY(0); }
 }
 
+#response-message h2 {
+    font-size: clamp(18px, 4.5vw, 22px);
+    line-height: 1.6;
+}
+
 #response-message img {
     max-width: 100%;
     border-radius: 14px;
-    margin: 16px 0;
+    margin: 18px 0;
 }
 
 /* Heart beat */
@@ -181,8 +186,24 @@ document.getElementById('yes-btn').addEventListener('click', () => {
     box.style.display = 'block';
 
     box.innerHTML = `
-        <h2>This is the best decision, Aisha! 💖<br>I love you so much 😘😘😘</h2>
-        <img src="https://media.tenor.com/qJr03tWAvo1AAAAC/kiss-love.gif" alt="Love gif">
+        <h2>
+            This is the best decision, Aisha! 💖😍😘💋<br><br>
+
+            Aisha, my love, I can’t put into words how much I adore you.
+            Every day with you is a blessing, and the thought of us becoming parents together
+            fills my heart with so much happiness. 💞<br><br>
+
+            I know our little one will bring us even closer, and I can’t wait to create more
+            beautiful memories with you, Buddhu Ji. 🥰<br><br>
+
+            You’re my world, Jaanu, and nothing makes me happier than knowing we’ll be raising
+            our little bundle of joy together. 👶💖<br><br>
+
+            I love you more than anything! 😘😘💋❤️
+        </h2>
+
+        <img src="https://tenor.com/qJr03tWAvo1.gif" alt="Kissing cartoon gif">
+
         <div class="heart">❤️❤️❤️</div>
     `;
 
