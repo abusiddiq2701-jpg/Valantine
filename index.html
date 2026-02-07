@@ -20,11 +20,11 @@ body {
     padding: 16px;
 }
 
-/* Floating hearts background */
+/* Floating hearts */
 .bg-heart {
     position: absolute;
     bottom: -40px;
-    font-size: 24px;
+    font-size: 22px;
     opacity: 0.6;
     animation: floatUp linear infinite;
 }
@@ -72,51 +72,49 @@ button {
     font-weight: bold;
     cursor: pointer;
     color: white;
-    transition: transform 0.2s ease;
 }
 
-button:active {
-    transform: scale(0.96);
-}
+#yes-btn { background: #ff2f92; }
+#no-btn  { background: #ff77b7; }
 
-#yes-btn {
-    background: #ff2f92;
-}
+/* =========================
+   RESPONSE LAYOUT
+========================= */
 
-#no-btn {
-    background: #ff77b7;
-    position: relative;
-}
-
-/* Response */
 #response-message {
     display: none;
-    color: white;
-    text-align: center;
-    max-width: 420px;
-    animation: fadeIn 0.6s ease;
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(6px);
+    border-radius: 18px;
+    padding: 20px;
+    max-width: 900px;
+    width: 100%;
     z-index: 10;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(12px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Flex container */
+.response-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
 }
 
-#response-message h2 {
-    font-size: clamp(18px, 4.5vw, 22px);
+/* Text */
+.response-text {
+    font-size: clamp(16px, 2.2vw, 20px);
     line-height: 1.6;
 }
 
-#response-message img {
-    max-width: 100%;
+/* Image */
+.response-gif img {
+    max-width: 400px;
+    min-height: 400px;
     border-radius: 14px;
-    margin: 18px 0;
 }
 
-/* Heart beat */
+/* Heart */
 .heart {
-    font-size: 36px;
+    font-size: 34px;
     animation: beat 1s infinite;
 }
 
@@ -126,18 +124,23 @@ button:active {
     50% { transform: scale(1); }
 }
 
-/* Confetti */
-.confetti {
-    position: absolute;
-    width: 8px;
-    height: 14px;
-    animation: fall linear forwards;
-}
+/* =========================
+   MOBILE BEHAVIOR
+========================= */
+@media (max-width: 768px) {
 
-@keyframes fall {
-    to {
-        transform: translateY(120vh) rotate(360deg);
-        opacity: 0;
+    body {
+        overflow: auto;
+    }
+
+    #response-message {
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .response-content {
+        flex-direction: column;
+        text-align: center;
     }
 }
 </style>
@@ -155,7 +158,7 @@ button:active {
 <div id="response-message"></div>
 
 <script>
-/* Floating hearts generator */
+/* Floating hearts */
 setInterval(() => {
     const heart = document.createElement('div');
     heart.className = 'bg-heart';
@@ -164,65 +167,64 @@ setInterval(() => {
     heart.style.animationDuration = 6 + Math.random() * 6 + 's';
     document.body.appendChild(heart);
     setTimeout(() => heart.remove(), 12000);
-}, 600);
+}, 700);
 
-/* Runaway No button */
+/* Runaway No — desktop only */
 const noBtn = document.getElementById('no-btn');
-noBtn.addEventListener('mouseenter', moveButton);
-noBtn.addEventListener('touchstart', moveButton);
+function moveNoButton() {
+    const padding = 20;
+    const btnWidth = noBtn.offsetWidth || 120;
+    const btnHeight = noBtn.offsetHeight || 50;
 
-function moveButton() {
-    const x = Math.random() * (window.innerWidth - 120);
-    const y = Math.random() * (window.innerHeight - 60);
+    const x = Math.random() * (window.innerWidth - btnWidth - padding);
+    const y = Math.random() * (window.innerHeight - btnHeight - padding);
+
     noBtn.style.position = 'fixed';
     noBtn.style.left = `${x}px`;
     noBtn.style.top = `${y}px`;
 }
 
-/* Yes button logic */
+/* Desktop hover */
+noBtn.addEventListener('mouseenter', moveNoButton);
+
+/* Mobile tap / touch */
+noBtn.addEventListener('touchstart', (e) => {
+    e.preventDefault();   // prevents accidental click
+    moveNoButton();
+});
+
+
+/* Yes click */
 document.getElementById('yes-btn').addEventListener('click', () => {
     document.getElementById('message-box').style.display = 'none';
     const box = document.getElementById('response-message');
     box.style.display = 'block';
 
     box.innerHTML = `
-        <h2>
-            This is the best decision, Aisha! 💖😍😘💋<br><br>
+        <div class="response-content">
+            <div class="response-text">
+                <strong>This is the best decision, Aisha! 💖😍😘💋</strong><br><br>
 
-            Aisha, my love, I can’t put into words how much I adore you.
-            Every day with you is a blessing, and the thought of us becoming parents together
-            fills my heart with so much happiness. 💞<br><br>
+                Aisha, my love, I can’t put into words how much I adore you.
+                Every day with you is a blessing, and the thought of us becoming parents together
+                fills my heart with so much happiness. 💞<br><br>
 
-            I know our little one will bring us even closer, and I can’t wait to create more
-            beautiful memories with you, Buddhu Ji. 🥰<br><br>
+                I know our little one will bring us even closer, and I can’t wait to create more
+                beautiful memories with you, Buddhu Ji. 🥰<br><br>
 
-            You’re my world, Jaanu, and nothing makes me happier than knowing we’ll be raising
-            our little bundle of joy together. 👶💖<br><br>
+                You’re my world, Jaanu, and nothing makes me happier than knowing we’ll be raising
+                our little bundle of joy together. 👶💖<br><br>
 
-            I love you more than anything! 😘😘💋❤️
-        </h2>
-<img src="https://media.tenor.com/qJr03tWAvo1AAAAC/kiss-love.gif" alt="Kissing cartoon gif">
-        
+                I love you more than anything! 😘😘💋❤️
+                <div class="heart">❤️❤️❤️</div>
+            </div>
 
-        <div class="heart">❤️❤️❤️</div>
+            <div class="response-gif">
+                <img src="./hug.gif" alt="Kissing cartoon gif">
+            </div>
+        </div>
     `;
-
-    launchConfetti();
 });
-
-/* Confetti effect */
-function launchConfetti() {
-    for (let i = 0; i < 120; i++) {
-        const c = document.createElement('div');
-        c.className = 'confetti';
-        c.style.left = Math.random() * 100 + 'vw';
-        c.style.top = '-20px';
-        c.style.background = `hsl(${Math.random() * 360},100%,60%)`;
-        c.style.animationDuration = 2 + Math.random() * 3 + 's';
-        document.body.appendChild(c);
-        setTimeout(() => c.remove(), 5000);
-    }
-}
 </script>
 
 </body>
