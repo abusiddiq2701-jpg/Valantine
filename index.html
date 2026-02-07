@@ -1,206 +1,233 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Valentine's Surprise 💝</title>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Valentine's Surprise 💝</title>
 
-<style>
-* { box-sizing: border-box; }
+    <style>
+      * {
+        box-sizing: border-box;
+      }
 
-body {
-    margin: 0;
-    min-height: 100vh;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #ff7b7b, #ffccf5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    padding: 16px;
-}
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ff7b7b, #ffccf5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+        padding: 16px;
+      }
 
-/* Floating hearts */
-.bg-heart {
-    position: absolute;
-    bottom: -40px;
-    font-size: 22px;
-    opacity: 0.6;
-    animation: floatUp linear infinite;
-}
+      /* Floating hearts */
+      .bg-heart {
+        position: absolute;
+        bottom: -40px;
+        font-size: 22px;
+        opacity: 0.6;
+        animation: floatUp linear infinite;
+      }
 
-@keyframes floatUp {
-    from { transform: translateY(0) scale(1); opacity: 0.8; }
-    to { transform: translateY(-120vh) scale(1.4); opacity: 0; }
-}
+      @keyframes floatUp {
+        from {
+          transform: translateY(0) scale(1);
+          opacity: 0.8;
+        }
+        to {
+          transform: translateY(-120vh) scale(1.4);
+          opacity: 0;
+        }
+      }
 
-/* Card */
-#message-box {
-    background: #fff;
-    border-radius: 18px;
-    padding: 26px;
-    width: 100%;
-    max-width: 380px;
-    text-align: center;
-    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
-    animation: popIn 0.7s ease;
-    z-index: 10;
-}
-
-@keyframes popIn {
-    from { transform: scale(0.6); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
-}
-
-h1 {
-    font-size: clamp(20px, 5vw, 24px);
-    color: #ff2f6e;
-    margin-bottom: 22px;
-}
-
-.buttons {
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-}
-
-button {
-    padding: 14px;
-    font-size: 18px;
-    border-radius: 12px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    color: white;
-}
-
-#yes-btn { background: #ff2f92; }
-#no-btn  { background: #ff77b7; }
-
-/* =========================
-   RESPONSE LAYOUT
-========================= */
-
-#response-message {
-    display: none;
-    background: rgba(255,255,255,0.15);
-    backdrop-filter: blur(6px);
-    border-radius: 18px;
-    padding: 20px;
-    max-width: 900px;
-    width: 100%;
-    z-index: 10;
-}
-
-/* Flex container */
-.response-content {
-    display: flex;
-    gap: 20px;
-    align-items: center;
-}
-
-/* Text */
-.response-text {
-    font-size: clamp(16px, 2.2vw, 20px);
-    line-height: 1.6;
-}
-
-/* Image */
-.response-gif img {
-    max-width: 400px;
-    min-height: 400px;
-    border-radius: 14px;
-}
-
-/* Heart */
-.heart {
-    font-size: 34px;
-    animation: beat 1s infinite;
-}
-
-@keyframes beat {
-    0% { transform: scale(1); }
-    25% { transform: scale(1.25); }
-    50% { transform: scale(1); }
-}
-
-/* =========================
-   MOBILE BEHAVIOR
-========================= */
-@media (max-width: 768px) {
-
-    body {
-        overflow: auto;
-    }
-
-    #response-message {
-        max-height: 90vh;
-        overflow-y: auto;
-    }
-
-    .response-content {
-        flex-direction: column;
+      /* Question card */
+      #message-box {
+        background: #fff;
+        border-radius: 18px;
+        padding: 26px;
+        width: 100%;
+        max-width: 380px;
         text-align: center;
-    }
-}
-</style>
-</head>
-<body>
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+        animation: popIn 0.7s ease;
+        z-index: 10;
+      }
 
-<div id="message-box">
-    <h1>Hey Aisha, will you be my Valentine? 💝</h1>
-    <div class="buttons">
+      @keyframes popIn {
+        from {
+          transform: scale(0.6);
+          opacity: 0;
+        }
+        to {
+          transform: scale(1);
+          opacity: 1;
+        }
+      }
+
+      h1 {
+        font-size: clamp(20px, 5vw, 24px);
+        color: #ff2f6e;
+        margin-bottom: 22px;
+      }
+
+      .buttons {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+
+      button {
+        padding: 14px;
+        font-size: 18px;
+        border-radius: 12px;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+        color: white;
+      }
+
+      #yes-btn {
+        background: #ff2f92;
+      }
+      #no-btn {
+        background: #ff77b7;
+      }
+
+      /* ================= RESPONSE ================= */
+
+      #response-message {
+        display: none;
+        background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(6px);
+        border-radius: 18px;
+        padding: 20px;
+        max-width: 900px;
+        width: 100%;
+        z-index: 10;
+      }
+
+      .response-content {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .response-text {
+        color: white;
+        font-size: clamp(16px, 2.2vw, 20px);
+        line-height: 1.6;
+      }
+
+      .response-gif img {
+        max-width: 400px;
+        min-height: 400px;
+        border-radius: 14px;
+      }
+
+      .heart {
+        font-size: 34px;
+        animation: beat 1s infinite;
+      }
+
+      @keyframes beat {
+        0% {
+          transform: scale(1);
+        }
+        25% {
+          transform: scale(1.25);
+        }
+        50% {
+          transform: scale(1);
+        }
+      }
+
+      /* ================= MOBILE ================= */
+      @media (max-width: 768px) {
+        body {
+          align-items: flex-start;
+          overflow: auto;
+        }
+
+        #response-message {
+          max-height: 90vh;
+          overflow-y: auto;
+        }
+
+        .response-content {
+          flex-direction: column;
+          text-align: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="message-box">
+      <h1>Hey Aisha, will you be my Valentine? 💝</h1>
+      <div class="buttons">
         <button id="yes-btn">Yes</button>
         <button id="no-btn">No</button>
+      </div>
     </div>
-</div>
 
-<div id="response-message"></div>
+    <div id="response-message"></div>
 
-<script>
-/* Floating hearts */
-setInterval(() => {
-    const heart = document.createElement('div');
-    heart.className = 'bg-heart';
-    heart.textContent = '❤️';
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = 6 + Math.random() * 6 + 's';
-    document.body.appendChild(heart);
-    setTimeout(() => heart.remove(), 12000);
-}, 700);
+    <script>
+      /* Floating hearts */
+      setInterval(() => {
+        const heart = document.createElement("div");
+        heart.className = "bg-heart";
+        heart.textContent = "❤️";
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = 6 + Math.random() * 6 + "s";
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 12000);
+      }, 700);
 
-/* Runaway No — desktop only */
-const noBtn = document.getElementById('no-btn');
-function moveNoButton() {
-    const padding = 20;
-    const btnWidth = noBtn.offsetWidth || 120;
-    const btnHeight = noBtn.offsetHeight || 50;
+      const noBtn = document.getElementById("no-btn");
+      const heading = document.querySelector("#message-box h1");
 
-    const x = Math.random() * (window.innerWidth - btnWidth - padding);
-    const y = Math.random() * (window.innerHeight - btnHeight - padding);
+      /* Change heading when No is attempted */
+      function changeHeadingOnNo() {
+        heading.innerHTML =
+          "Think again Aisha… you are not supposed to say no 😜💔";
+      }
 
-    noBtn.style.position = 'fixed';
-    noBtn.style.left = `${x}px`;
-    noBtn.style.top = `${y}px`;
-}
+      /* Move No button */
+      function moveNoButton() {
+        const padding = 20;
+        const btnWidth = noBtn.offsetWidth || 120;
+        const btnHeight = noBtn.offsetHeight || 50;
 
-/* Desktop hover */
-noBtn.addEventListener('mouseenter', moveNoButton);
+        const x = Math.random() * (window.innerWidth - btnWidth - padding);
+        const y = Math.random() * (window.innerHeight - btnHeight - padding);
 
-/* Mobile tap / touch */
-noBtn.addEventListener('touchstart', (e) => {
-    e.preventDefault();   // prevents accidental click
-    moveNoButton();
-});
+        noBtn.style.position = "fixed";
+        noBtn.style.left = `${x}px`;
+        noBtn.style.top = `${y}px`;
+      }
 
+      /* Desktop hover */
+      noBtn.addEventListener("mouseenter", () => {
+        changeHeadingOnNo();
+        moveNoButton();
+      });
 
-/* Yes click */
-document.getElementById('yes-btn').addEventListener('click', () => {
-    document.getElementById('message-box').style.display = 'none';
-    const box = document.getElementById('response-message');
-    box.style.display = 'block';
+      /* Mobile tap */
+      noBtn.addEventListener("touchstart", (e) => {
+        e.preventDefault();
+        changeHeadingOnNo();
+        moveNoButton();
+      });
 
-    box.innerHTML = `
+      /* YES logic */
+      document.getElementById("yes-btn").addEventListener("click", () => {
+        document.getElementById("message-box").style.display = "none";
+        const box = document.getElementById("response-message");
+        box.style.display = "block";
+
+        box.innerHTML = `
         <div class="response-content">
             <div class="response-text">
                 <strong>This is the best decision, Aisha! 💖😍😘💋</strong><br><br>
@@ -220,12 +247,11 @@ document.getElementById('yes-btn').addEventListener('click', () => {
             </div>
 
             <div class="response-gif">
-                <img src="./hug.gif" alt="Kissing cartoon gif">
+                <img src="./hug.gif" alt="Hug gif">
             </div>
         </div>
     `;
-});
-</script>
-
-</body>
+      });
+    </script>
+  </body>
 </html>
